@@ -16,6 +16,7 @@ require('./models/knowledge')
 const Knowledge=mongoose.model('knowledge');
 
 const kb=require('./routes/kb');
+const user=require("./routes/user");
 
 
 //session
@@ -72,7 +73,7 @@ app.get('/about',(req,res)=>{
 });   
 
 app.use('/kb',kb);
-
+app.use('/user',user)
 app.listen(5001,(req,res)=>{
 
     console.log('app running on port 5001')
