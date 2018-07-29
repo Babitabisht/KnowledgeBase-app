@@ -1,0 +1,37 @@
+<div>
+{{#each kb}}
+
+
+<div class="card card-body">
+   
+   <h2> {{title}}</h2>
+
+   <p class="lead">
+
+{{content}}
+
+   </p>
+
+   <a href="/kb/edit/{{id}}" class="btn btn-primary">Edit</a><br>
+
+
+<form action="/kb/delete/{{id}}?_method=DELETE" method="post">
+
+<input type="hidden" name="_method" value="PUT" >  
+
+<button class="btn btn-danger btn-block"  type="submit">Delete</button>
+
+ </form>
+
+</div>
+
+
+
+
+
+
+
+
+
+{{/each}}
+</div>

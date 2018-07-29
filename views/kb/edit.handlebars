@@ -1,0 +1,32 @@
+<div class="card">
+
+<div class="card-header">
+     <h3 class="text-center">Edit Your Knowledge</h1>
+</div>
+   
+    <form action="/kb/edit/:{{kb.id}}?_method=PUT" method="POST">
+
+    <input type="hidden" name="_method" value="PUT">
+<div class="form-group">
+<label for="title">Title</label>
+<input type="text" name="title" id=""  class="form-control" required value={{kb.title}} >
+</div>
+
+<div class="form-group">
+<label for="content">Content</label>
+<textarea name="content" id="" cols="30" rows="5"  class="form-control"  required >
+
+{{kb.content}}
+
+</textarea>
+</div>
+
+<button type="submit" class="btn btn-primary m-3">Submit</button>
+
+
+
+
+</form>
+
+
+</div>

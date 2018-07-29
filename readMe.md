@@ -1,0 +1,1 @@
+This is a simple crud application of nodejs, having various functionality like add knowledgeBase , delete knowledgebase and Edit knowledgeBase .Login Authentification is implemented by Passport local Strategy. 
