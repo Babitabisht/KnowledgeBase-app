@@ -66,6 +66,7 @@ Knowledge.find({})
 .sort({date:'desc'})
 .then(kb=>{
     //console.log(kb);
+    //console.log(user);
     res.render('kb/index',{
         kb:kb
     });

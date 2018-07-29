@@ -2,9 +2,17 @@ const express=require('express');
 const mongoose = require('mongoose');
 const router =express.Router();
 const bcrypt=require('bcryptjs');
+const passport=require('passport');
+
 
 
 require('../models/user');
+
+//passport config
+
+require('../config/passport')(passport);
+
+
 
 const User=mongoose.model('user');
 
@@ -87,5 +95,29 @@ console.log(err);
 }
 
 });
+
+
+router.post('/login',  (req,res,next)=>{
+    console.log('in post');
+    passport.authenticate('local',{
+        successRedirect:'/kb/' ,
+        failureRedirect:'/user/login' ,
+        failureFlash:true
+    })(req,res,next);
+
+
+
+    
+});
+
+
+router.get('/logout',(req,res)=>{
+
+req.logout();
+console.log('logged out successfully !!!');
+req.flash('success_msg','You are logged out !!!');
+res.redirect('/user/login');
+
+})
 
 module.exports =router;

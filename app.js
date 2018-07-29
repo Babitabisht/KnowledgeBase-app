@@ -7,6 +7,11 @@ const mongoose=require('mongoose');
 const session = require('express-session');
 const methodOverride=require('method-override');
 const flash=require('express-flash');
+const passport=require('passport');
+
+
+
+
 
 mongoose.connect('mongodb://localhost/KBase').
 then( ()=>console.log('Mongodb Connected') ).
@@ -33,9 +38,15 @@ app.use( (req,res,next)=>{
 
 res.locals.success_msg=req.flash('success_msg');
 res.locals.error_msg=req.flash('error_msg');
+res.locals.user=req.user || null;
 
 next();
 }  )
+
+
+//passport config
+
+require('./config/passport')(passport);
 
 
 
@@ -47,14 +58,21 @@ app.engine('handlebars',exphbs({
 app.set('view engine','handlebars');
 
 //method override
-
 app.use(methodOverride('_method'));
 
+//static content
+app.use(express.static(path.join(__dirname,'public')));
 
 
 //body-Parser Middleware
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
+
+//passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+
 
 
 app.get('/',(req,res)=>{
